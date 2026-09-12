@@ -195,24 +195,24 @@ other three views (spec.md User Story 3).
 
 ### Implementation for User Story 3
 
-- [ ] T019 [P] [US3] Implement `WeekHeader` in `lib/calendar/week/week_header.dart`: shows the
+- [x] T019 [P] [US3] Implement `WeekHeader` in `lib/calendar/week/week_header.dart`: shows the
       selected week's seven dates across the top (FR-011) and wraps `CalendarNavigationHeader`
       (T007) for previous/next week controls (FR-014).
-- [ ] T020 [P] [US3] Implement `EventBlock` in `lib/calendar/week/event_block.dart`: a
+- [x] T020 [P] [US3] Implement `EventBlock` in `lib/calendar/week/event_block.dart`: a
       `Positioned` block (top offset + height from `calendar_layout_utils.dart`, T006; horizontal
       slot from the event's `(column, columnCount)` overlap assignment) showing the event title,
       styled per the "Styling" guidance in plan.md (clean, neutral, consistent spacing/corner
       radius).
-- [ ] T021 [US3] Implement `WeekDayColumn` in `lib/calendar/week/week_day_column.dart`: a `Stack`
+- [x] T021 [US3] Implement `WeekDayColumn` in `lib/calendar/week/week_day_column.dart`: a `Stack`
       for one day, with an hour-row background and one `EventBlock` (T020) per event on that day,
       using `calendar_layout_utils.dart`'s overlap-clustering output (T006) so overlapping events
       sit side by side rather than hiding one another (FR-015).
-- [ ] T022 [US3] Implement `WeekTimeGrid` in `lib/calendar/week/week_time_grid.dart`: a vertical
+- [x] T022 [US3] Implement `WeekTimeGrid` in `lib/calendar/week/week_time_grid.dart`: a vertical
       time axis (FR-012) using `TimeLabel`/hour formatting from `lib/shared/time_label.dart`
       (T008) alongside a horizontally-laid-out row of seven `WeekDayColumn`s (T021), scrollable
       vertically via `SingleChildScrollView`, covering the practical visible range described in
       plan.md (e.g. 06:00–22:00, or the full day).
-- [ ] T023 [US3] Implement the full `WeekCalendar` screen in
+- [x] T023 [US3] Implement the full `WeekCalendar` screen in
       `lib/calendar/week/week_calendar.dart` (replacing the T011 placeholder): a `StatefulWidget`
       holding `displayedWeekStart` state; composes `WeekHeader` (T019) + `WeekTimeGrid` (T022),
       sourcing the week's dates from `calendar_date_utils.dart`'s week helpers (T005) and that
