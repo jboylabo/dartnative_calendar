@@ -28,7 +28,7 @@ implementation and testing of each calendar example.
 **Purpose**: Create the directory skeleton this feature's files will live in. No new
 dependencies are added (research.md: no new `pubspec.yaml` entries needed).
 
-- [ ] T001 Create the empty directory skeleton `lib/models/`, `lib/data/`, `lib/screens/`,
+- [x] T001 Create the empty directory skeleton `lib/models/`, `lib/data/`, `lib/screens/`,
       `lib/calendar/month/`, `lib/calendar/week/`, `lib/calendar/day/`,
       `lib/calendar/timeline/`, `lib/shared/`, `lib/utils/`, per the Project Structure in
       `specs/001-calendar-showcase/plan.md`
@@ -45,21 +45,21 @@ written once here rather than duplicated inside each view.
 
 **⚠️ CRITICAL**: No user story phase (Phase 3+) may begin until this phase is complete.
 
-- [ ] T002 [P] Create the `CalendarEvent` model in `lib/models/calendar_event.dart`: fields
+- [x] T002 [P] Create the `CalendarEvent` model in `lib/models/calendar_event.dart`: fields
       `id` (`String`), `title` (`String`), `start` (`DateTime`), `end` (`DateTime`),
       `description` (`String?`, optional per data-model.md); add a `Duration get duration` getter
       computed as `end.difference(start)`. Keep the class free of any widget/UI imports
       (constitution Principle III).
-- [ ] T003 [P] Create the `CalendarViewType` enum in `lib/models/calendar_view_type.dart` with
+- [x] T003 [P] Create the `CalendarViewType` enum in `lib/models/calendar_view_type.dart` with
       exactly the four values `month`, `week`, `day`, `timeline` (data-model.md) — no
       display-string fields on the enum itself.
-- [ ] T004 [P] Create the hard-coded sample data in `lib/data/sample_events.dart`: a
+- [x] T004 [P] Create the hard-coded sample data in `lib/data/sample_events.dart`: a
       `List<CalendarEvent>` covering the six example types from spec.md (Meeting, Focus Work,
       Lunch, Coffee, App Development, Gym), spanning roughly two weeks centered on "today" plus a
       few events further out (spec.md Assumptions), including at least one same-day overlapping
       pair and at least one day with zero events (data-model.md "Sample data set"). Depends on
       T002 for the `CalendarEvent` type.
-- [ ] T005 [P] Implement `lib/utils/calendar_date_utils.dart` with pure functions: number of days
+- [x] T005 [P] Implement `lib/utils/calendar_date_utils.dart` with pure functions: number of days
       in a given month; the first visible date of a month grid (including leading days from the
       previous month); the full list of dates for a month grid (35 or 42 entries, supporting both
       5- and 6-row months per spec.md FR-006 and research.md); start-of-week and end-of-week for
@@ -67,7 +67,7 @@ written once here rather than duplicated inside each view.
       `bool isSameDay(DateTime a, DateTime b)`; `List<CalendarEvent> eventsOnDay(List<CalendarEvent> events, DateTime day)`;
       and a chronological sort of events by `start`. Depends on T002 for the `CalendarEvent`
       type.
-- [ ] T006 [P] Implement `lib/utils/calendar_layout_utils.dart` with pure functions: convert an
+- [x] T006 [P] Implement `lib/utils/calendar_layout_utils.dart` with pure functions: convert an
       event's `start` time-of-day into a vertical pixel offset given an `hourHeight` constant and
       a visible-range start hour; convert an event's `duration` into a block height using the
       same `hourHeight`; and an overlap-clustering function that, given one day's events, groups
@@ -75,12 +75,12 @@ written once here rather than duplicated inside each view.
       pair so overlapping events can be laid out side by side (research.md "Week/Day event
       overlap layout" — cluster-based even-width division, not a general scheduling engine).
       Depends on T002 for the `CalendarEvent` type.
-- [ ] T007 [P] Implement a reusable `CalendarNavigationHeader` widget in
+- [x] T007 [P] Implement a reusable `CalendarNavigationHeader` widget in
       `lib/shared/calendar_navigation.dart`: a row with a previous-button, a title
       `Widget`/`String` slot, and a next-button, taking `onPrevious`/`onNext` callbacks — reused
       by the Month, Week, and Day headers (constitution Principle VI) using DartNative's
       `Row`/`IconButton`/`GestureDetector` (research.md).
-- [ ] T008 [P] Implement reusable hour-label helpers in `lib/shared/time_label.dart`: a function
+- [x] T008 [P] Implement reusable hour-label helpers in `lib/shared/time_label.dart`: a function
       formatting an hour-of-day `int` (0–23) into a display string (e.g. "6 AM"), and a small
       `TimeLabel` widget wrapping it in a `Text`, for reuse by the Week and Day time axes.
 
@@ -110,30 +110,30 @@ bodies that Phases 5–7 later fill in.
 
 ### Implementation for User Story 1
 
-- [ ] T009 [US1] Implement `CalendarShowcaseScreen` in
+- [x] T009 [US1] Implement `CalendarShowcaseScreen` in
       `lib/screens/calendar_showcase_screen.dart` as the app's single shell: a `StatefulWidget`
       holding the selected tab index; a `Scaffold` with `AppBar` title "Calendar Showcase"
       (FR-001, shown regardless of selected tab), `bottomNavigationBar: BottomNavigationBar` with
       exactly one item per `CalendarViewType` labeled with that view's name (FR-002), and
       `body: IndexedStack` switching between the four tab bodies on `BottomNavigationBar.onTap`
       (FR-003) — no `Navigator.push` involved.
-- [ ] T010 [P] [US1] `MonthCalendar` in `lib/calendar/month/month_calendar.dart` returns its tab
+- [x] T010 [P] [US1] `MonthCalendar` in `lib/calendar/month/month_calendar.dart` returns its tab
       body content (starting with its one-sentence description, FR-004) directly — no `Scaffold`
       or `AppBar` of its own, since `CalendarShowcaseScreen` owns the single shell. Full
       implementation lands in Phase 4.
-- [ ] T011 [P] [US1] Create a minimal `WeekCalendar` placeholder tab body in
+- [x] T011 [P] [US1] Create a minimal `WeekCalendar` placeholder tab body in
       `lib/calendar/week/week_calendar.dart`: its one-sentence description (FR-004) plus a
       placeholder message — no `Scaffold`/`AppBar` — to be replaced with the full implementation
       in Phase 5.
-- [ ] T012 [P] [US1] Create a minimal `DayCalendar` placeholder tab body in
+- [x] T012 [P] [US1] Create a minimal `DayCalendar` placeholder tab body in
       `lib/calendar/day/day_calendar.dart`: its one-sentence description (FR-004) plus a
       placeholder message — no `Scaffold`/`AppBar` — to be replaced with the full implementation
       in Phase 6.
-- [ ] T013 [P] [US1] Create a minimal `TimelineCalendar` placeholder tab body in
+- [x] T013 [P] [US1] Create a minimal `TimelineCalendar` placeholder tab body in
       `lib/calendar/timeline/timeline_calendar.dart`: its one-sentence description (FR-004) plus
       a placeholder message — no `Scaffold`/`AppBar` — to be replaced with the full
       implementation in Phase 7.
-- [ ] T014 [US1] Update `lib/main.dart` to call `runApp(const CalendarShowcaseScreen())` instead
+- [x] T014 [US1] Update `lib/main.dart` to call `runApp(const CalendarShowcaseScreen())` instead
       of the scaffolded placeholder `HomeScreen` (leave `DartNativePluginRegistrant.registerAll()`
       and the `SystemChrome.defaultStyle` setup untouched). Depends on T009.
 
@@ -154,21 +154,21 @@ views (spec.md User Story 2).
 
 ### Implementation for User Story 2
 
-- [ ] T015 [P] [US2] Implement `MonthHeader` in `lib/calendar/month/month_header.dart`: shows the
+- [x] T015 [P] [US2] Implement `MonthHeader` in `lib/calendar/month/month_header.dart`: shows the
       displayed month/year as the title and wraps `CalendarNavigationHeader`
       (`lib/shared/calendar_navigation.dart`, T007) for previous/next month controls (FR-008).
-- [ ] T016 [P] [US2] Implement `DayCell` in `lib/calendar/month/day_cell.dart`: renders a date
+- [x] T016 [P] [US2] Implement `DayCell` in `lib/calendar/month/day_cell.dart`: renders a date
       number; visually distinguishes today (FR-007); visually mutes dates outside the displayed
       month (spec.md "Month view implementation"); renders a small dot/indicator when the date
       has one or more events (FR-009); and calls an `onTap(DateTime)` callback when selected
       (FR-010), using `GestureDetector`/`InkWell`.
-- [ ] T017 [US2] Implement `MonthGrid` in `lib/calendar/month/month_grid.dart`: a 7-column
+- [x] T017 [US2] Implement `MonthGrid` in `lib/calendar/month/month_grid.dart`: a 7-column
       `GridView` (research.md "Month grid construction") built from
       `calendar_date_utils.dart`'s month-grid date list (T005), rendering one `DayCell` (T016)
       per date, passing each date's event indicator flag (via `calendar_date_utils.eventsOnDay`)
       and today/selected/outside-month state, and forwarding cell taps up to a
       `ValueChanged<DateTime>` prop.
-- [ ] T018 [US2] Implement the full `MonthCalendar` tab body in
+- [x] T018 [US2] Implement the full `MonthCalendar` tab body in
       `lib/calendar/month/month_calendar.dart` (filling in the T010 content): a `StatefulWidget`
       holding `displayedMonth` and `selectedDate` state; its description header (FR-004) followed
       by `MonthHeader` (T015) + `MonthGrid` (T017) + a section below listing the selected date's
@@ -235,19 +235,19 @@ the other three views (spec.md User Story 4).
 
 ### Implementation for User Story 4
 
-- [ ] T024 [P] [US4] Implement `DayEventBlock` in `lib/calendar/day/day_event_block.dart`: a
+- [x] T024 [P] [US4] Implement `DayEventBlock` in `lib/calendar/day/day_event_block.dart`: a
       `Positioned` block sized/positioned using the same `calendar_layout_utils.dart` functions
       as `EventBlock` (T006/T020), for a single day's full-width timeline.
-- [ ] T025 [US4] Implement `DayTimeGrid` in `lib/calendar/day/day_time_grid.dart`: renders hour
+- [x] T025 [US4] Implement `DayTimeGrid` in `lib/calendar/day/day_time_grid.dart`: renders hour
       separators and labels (FR-016) via `lib/shared/time_label.dart` (T008), lays out one
       `DayEventBlock` (T024) per event on the selected day (FR-017), and — only when the selected
       day `isSameDay` as `DateTime.now()` (via `calendar_date_utils.dart`, T005) — renders a
       clearly visible current-time indicator line positioned via `calendar_layout_utils.dart`
       (T006) at the current time-of-day (FR-019; must NOT render for any other day).
-- [ ] T026 [P] [US4] Implement `DayHeader` in `lib/calendar/day/day_header.dart`: shows the
+- [x] T026 [P] [US4] Implement `DayHeader` in `lib/calendar/day/day_header.dart`: shows the
       selected date as a title and wraps `CalendarNavigationHeader` (T007) for previous/next day
       controls (FR-018).
-- [ ] T027 [US4] Implement the full `DayCalendar` screen in `lib/calendar/day/day_calendar.dart`
+- [x] T027 [US4] Implement the full `DayCalendar` screen in `lib/calendar/day/day_calendar.dart`
       (replacing the T012 placeholder): a `StatefulWidget` holding `selectedDay` state (defaulting
       to today); composes `DayHeader` (T026) + `DayTimeGrid` (T025), sourcing that day's events
       from `lib/data/sample_events.dart` (T004) via `calendar_date_utils.eventsOnDay` (T005);
