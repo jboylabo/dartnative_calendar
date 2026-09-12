@@ -269,16 +269,16 @@ by past/current/upcoming status, independent of the other three views (spec.md U
 
 ### Implementation for User Story 5
 
-- [ ] T028 [P] [US5] Implement `TimelineEventItem` in
+- [x] T028 [P] [US5] Implement `TimelineEventItem` in
       `lib/calendar/timeline/timeline_event_item.dart`: renders an event's time and title always,
       and its `description` only when non-null (FR-021); styles itself distinctly for past
       (event's `end` before now), current (`now` between `start` and `end`), and upcoming
       (`start` after now) status (FR-022), using styling only (no added interactive controls, per
       spec.md Assumptions).
-- [ ] T029 [US5] Implement `TimelineDateSection` in
+- [x] T029 [US5] Implement `TimelineDateSection` in
       `lib/calendar/timeline/timeline_date_section.dart`: a date header followed by one
       `TimelineEventItem` (T028) per event on that date, in chronological order.
-- [ ] T030 [US5] Implement the full `TimelineCalendar` screen in
+- [x] T030 [US5] Implement the full `TimelineCalendar` screen in
       `lib/calendar/timeline/timeline_calendar.dart` (replacing the T013 placeholder): sorts all
       of `lib/data/sample_events.dart` (T004) chronologically and groups them by calendar date
       using `calendar_date_utils.dart` (T005) (FR-020), then renders a vertically scrollable
@@ -293,12 +293,12 @@ fully implemented.
 
 **Purpose**: Final checks spanning all four calendar examples.
 
-- [ ] T031 [P] Run `dn analyze` (or `dart analyze`) across `lib/` and fix any warnings/lints
+- [x] T031 [P] Run `dn analyze` (or `dart analyze`) across `lib/` and fix any warnings/lints
       surfaced against this project's `analysis_options.yaml`.
-- [ ] T032 Walk through every scenario in `specs/001-calendar-showcase/quickstart.md` on a running
+- [x] T032 Walk through every scenario in `specs/001-calendar-showcase/quickstart.md` on a running
       app (`dn run -d <device-id>`) and confirm each checklist item and success-criteria check
       passes.
-- [ ] T033 [P] Re-review `lib/models/`, `lib/data/`, `lib/calendar/*/`, `lib/shared/`, and
+- [x] T033 [P] Re-review `lib/models/`, `lib/data/`, `lib/calendar/*/`, `lib/shared/`, and
       `lib/utils/` against constitution Principles II, III, IV, V, and VI (no third-party
       calendar package or unsupported Flutter-only API; date/layout math stays out of widgets;
       each calendar style remains its own independent widget tree; files stay small and

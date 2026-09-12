@@ -72,3 +72,15 @@ List<CalendarEvent> sortEventsChronologically(List<CalendarEvent> events) {
   sorted.sort((a, b) => a.start.compareTo(b.start));
   return sorted;
 }
+
+/// Where [event] falls relative to [now]: already finished, in progress, or
+/// not yet started. Used by the Agenda/Timeline view to visually
+/// distinguish past, current, and upcoming events (FR-022).
+enum EventTimeStatus { past, current, upcoming }
+
+/// Classifies [event] relative to [now].
+EventTimeStatus eventTimeStatus(CalendarEvent event, DateTime now) {
+  if (now.isBefore(event.start)) return EventTimeStatus.upcoming;
+  if (now.isBefore(event.end)) return EventTimeStatus.current;
+  return EventTimeStatus.past;
+}
