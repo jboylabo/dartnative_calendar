@@ -1,5 +1,5 @@
 import 'package:dartnative/dartnative.dart';
-import 'package:dartnative_calendar/dartnative_calendar.dart';
+import 'package:calendar_kit/calendar_kit.dart';
 
 import '../data/sample_events.dart';
 

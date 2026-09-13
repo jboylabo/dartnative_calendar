@@ -1,5 +1,5 @@
-name: dartnative_calendar_example
-description: "Demonstrates how to use the dartnative_calendar plugin."
+name: calendar_kit_example
+description: "Demonstrates how to use the calendar_kit plugin."
 publish_to: 'none'
 version: 0.1.0+1
 
@@ -13,7 +13,7 @@ dependencies:
   dartnative_ios: ^1.0.0
   dartnative_android: ^1.0.0
   dartnative_skia: ^1.0.0
-  dartnative_calendar:
+  calendar_kit:
     path: ../
 
 dev_dependencies:

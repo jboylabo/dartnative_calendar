@@ -1,4 +1,4 @@
-import 'package:dartnative_calendar/dartnative_calendar.dart';
+import 'package:calendar_kit/calendar_kit.dart';
 
 /// The single hard-coded source of demonstration events used by every
 /// calendar view. No networking, no persistence — event times are
