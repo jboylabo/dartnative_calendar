@@ -1,6 +1,6 @@
 import 'package:dartnative/dartnative.dart';
 
-import '../../data/sample_events.dart';
+import '../../models/calendar_event.dart';
 import '../../utils/calendar_date_utils.dart' as calendar_date_utils;
 import 'day_header.dart';
 import 'day_time_grid.dart';
@@ -9,11 +9,13 @@ import 'day_time_grid.dart';
 /// previous/next day navigation, events positioned by start time and
 /// duration, and a current-time indicator when viewing today.
 ///
-/// Returns content only — no `Scaffold`/`AppBar` of its own; the title and
-/// description are rendered by `CalendarShowcaseScreen`'s shared tab
-/// header.
+/// Returns content only — no `Scaffold`/`AppBar` of its own, so it can be
+/// embedded in any layout (a tab, a page, a showcase shell).
 class DayCalendar extends StatefulWidget {
-  const DayCalendar({super.key});
+  /// The events to position across the day's hourly timeline.
+  final List<CalendarEvent> events;
+
+  const DayCalendar({super.key, this.events = const []});
 
   @override
   State<DayCalendar> createState() => _DayCalendarState();
@@ -46,7 +48,7 @@ class _DayCalendarState extends State<DayCalendar> {
   @override
   Widget build(BuildContext context) {
     final dayEvents = calendar_date_utils.eventsOnDay(
-      sampleEvents,
+      widget.events,
       _selectedDay,
     );
 

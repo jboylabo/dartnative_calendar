@@ -1,26 +1,26 @@
 import 'package:dartnative/dartnative.dart';
 
-import '../../data/sample_events.dart';
 import '../../models/calendar_event.dart';
 import '../../utils/calendar_date_utils.dart' as calendar_date_utils;
 import 'timeline_date_section.dart';
 
-/// The Agenda/Timeline Calendar tab body: all sample events as a single
-/// chronological, scrollable list grouped by date (FR-020).
+/// The Agenda/Timeline Calendar tab body: all given events as a single
+/// chronological, scrollable list grouped by date.
 ///
 /// Returns content only — no `Scaffold`/`AppBar` of its own, and no
-/// navigation state — every sample event is always shown, sorted and
-/// grouped fresh on each build.
+/// navigation state — every event is always shown, sorted and grouped
+/// fresh on each build.
 class TimelineCalendar extends StatelessWidget {
-  const TimelineCalendar({super.key});
+  /// The events to list, grouped by day and sorted chronologically.
+  final List<CalendarEvent> events;
+
+  const TimelineCalendar({super.key, this.events = const []});
 
   @override
   Widget build(BuildContext context) {
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
-    final sorted = calendar_date_utils.sortEventsChronologically(
-      sampleEvents,
-    );
+    final sorted = calendar_date_utils.sortEventsChronologically(events);
 
     final eventsByDay = <DateTime, List<CalendarEvent>>{};
     for (final event in sorted) {

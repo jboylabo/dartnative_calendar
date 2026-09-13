@@ -1,48 +1,74 @@
 # dartnative_calendar
 
-A **dartnative** app, scaffolded by `dn create`. It ships with correct iOS +
-Android runner glue (so it renders instead of white-screening) and is ready for a
-branded splash + app icon.
+Reusable **month**, **week**, **day**, and **agenda (timeline)** calendar
+views for [DartNative](https://dartnative.com) apps — today highlighted,
+per-date event indicators, time-grid layout with overlap handling, and a
+live current-time indicator on the day view.
 
-## Run it
+Each view is a plain content widget (no `Scaffold`/`AppBar` of its own), so
+it drops into a tab, a page, or any layout you already have.
+
+## Install
+
+Add a dependency on `dartnative_calendar` in your app's `pubspec.yaml`. Once
+published to [dartpub.dev](https://dartpub.dev), a plain version dependency
+resolves it the same way the DartNative framework itself does:
+
+```yaml
+dependencies:
+  dartnative_calendar: ^0.1.0
+```
+
+Then fetch it with:
 
 ```sh
 dn pub get
-dn run -d <device-id>
 ```
 
-dartnative apps require a license. Subscribe at
-[dartpub.dev/framework](https://dartpub.dev/framework), copy your license key
-(`dnk_...`) from the Framework panel, and configure it once:
+## Usage
+
+```dart
+import 'package:dartnative_calendar/dartnative_calendar.dart';
+
+final events = [
+  CalendarEvent(
+    id: 'evt-001',
+    title: 'Meeting',
+    start: DateTime(2026, 1, 10, 9),
+    end: DateTime(2026, 1, 10, 10),
+  ),
+];
+
+// Pick the view that fits your screen:
+MonthCalendar(events: events);
+WeekCalendar(events: events);
+DayCalendar(events: events);
+TimelineCalendar(events: events);
+```
+
+## Public API
+
+- `MonthCalendar({List<CalendarEvent> events})` — monthly grid with
+  previous/next navigation and a selected-date event list.
+- `WeekCalendar({List<CalendarEvent> events})` — seven-day time-axis view.
+- `DayCalendar({List<CalendarEvent> events})` — single-day hourly timeline.
+- `TimelineCalendar({List<CalendarEvent> events})` — chronological agenda
+  list grouped by date.
+- `CalendarEvent` — `id`, `title`, `start`, `end`, optional `description`.
+- `CalendarViewType` — `month` / `week` / `day` / `timeline` enum, useful if
+  you build your own switcher between views.
+
+## Example
+
+See [`example/`](example) for a full showcase app that tabs between all four
+views. Run it with:
 
 ```sh
-dn config --license-key dnk_...
+cd example
+dn pub get
+dn run
 ```
 
-After that `dn run` just works, on every platform. (Prefer not to store the
-key? Pass it per run instead: `dn run --dart-define=DN_LICENSE_KEY=dnk_...`.)
+## License
 
-Always use **`dn`** for run/build/pub commands — not the underlying SDK CLI.
-
-## Make it yours
-
-- **Your UI** — edit `lib/main.dart`.
-- **App icon + launch logo** — replace `assets/dn-logo.png` with your logo, then
-  regenerate icon **and** splash in one step:
-  ```sh
-  dart run tool/generate_app_assets.dart --source=assets/dn-logo.png --bg=#000000
-  ```
-  (Splash only: `dart run dartnative_splash:setup`.)
-- **Plugins** — browse **[dartpub.dev](https://dartpub.dev)**. Add a package to
-  `pubspec.yaml`, run `dn pub get`, and import it — pure-Dart packages and
-  dartnative plugins both work as-is.
-
-## Don't touch (unless you know the runtime)
-
-These files are the dartnative runner glue — they're why the app renders:
-`ios/Runner/{AppDelegate,SceneDelegate}.swift` + the scene block in `Info.plist`,
-and `android/.../{Application,MainActivity}.kt` + the Material3 themes in
-`android/app/src/main/res/values*/styles.xml`.
-
-> Dependency paths in `pubspec.yaml` assume this app sits beside
-> `dartnative_framework`. Fix them if you created it elsewhere.
+MIT — see [LICENSE](LICENSE).

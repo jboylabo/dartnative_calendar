@@ -1,10 +1,7 @@
 import 'package:dartnative/dartnative.dart';
+import 'package:dartnative_calendar/dartnative_calendar.dart';
 
-import '../calendar/day/day_calendar.dart';
-import '../calendar/month/month_calendar.dart';
-import '../calendar/timeline/timeline_calendar.dart';
-import '../calendar/week/week_calendar.dart';
-import '../models/calendar_view_type.dart';
+import '../data/sample_events.dart';
 
 /// Configuration for one calendar style's tab: its bottom-bar label/icon
 /// and the one-sentence description shown at the top of its content.
@@ -98,10 +95,22 @@ class _CalendarShowcaseScreenState extends State<CalendarShowcaseScreen> {
       body: IndexedStack(
         index: _selectedIndex,
         children: [
-          _TabScaffold(entry: _catalog[0], child: const MonthCalendar()),
-          _TabScaffold(entry: _catalog[1], child: const WeekCalendar()),
-          _TabScaffold(entry: _catalog[2], child: const DayCalendar()),
-          _TabScaffold(entry: _catalog[3], child: const TimelineCalendar()),
+          _TabScaffold(
+            entry: _catalog[0],
+            child: MonthCalendar(events: sampleEvents),
+          ),
+          _TabScaffold(
+            entry: _catalog[1],
+            child: WeekCalendar(events: sampleEvents),
+          ),
+          _TabScaffold(
+            entry: _catalog[2],
+            child: DayCalendar(events: sampleEvents),
+          ),
+          _TabScaffold(
+            entry: _catalog[3],
+            child: TimelineCalendar(events: sampleEvents),
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
