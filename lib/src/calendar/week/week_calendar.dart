@@ -1,19 +1,21 @@
 import 'package:dartnative/dartnative.dart';
 
-import '../../data/sample_events.dart';
+import '../../models/calendar_event.dart';
 import '../../utils/calendar_date_utils.dart' as calendar_date_utils;
 import 'week_header.dart';
 import 'week_time_grid.dart';
 
 /// The Week Calendar tab body: the selected week's seven dates, a vertical
-/// time axis, sample events positioned by start time/duration with basic
+/// time axis, events positioned by start time/duration with basic
 /// side-by-side overlap handling, and previous/next week navigation.
 ///
-/// Returns content only — no `Scaffold`/`AppBar` of its own; the title and
-/// description are rendered by `CalendarShowcaseScreen`'s shared tab
-/// header.
+/// Returns content only — no `Scaffold`/`AppBar` of its own, so it can be
+/// embedded in any layout (a tab, a page, a showcase shell).
 class WeekCalendar extends StatefulWidget {
-  const WeekCalendar({super.key});
+  /// The events to position across the week's time grid.
+  final List<CalendarEvent> events;
+
+  const WeekCalendar({super.key, this.events = const []});
 
   @override
   State<WeekCalendar> createState() => _WeekCalendarState();
@@ -63,7 +65,7 @@ class _WeekCalendarState extends State<WeekCalendar> {
           child: WeekTimeGrid(
             weekDates: weekDates,
             today: _today,
-            events: sampleEvents,
+            events: widget.events,
           ),
         ),
       ],

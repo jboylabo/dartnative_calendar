@@ -1,6 +1,5 @@
 import 'package:dartnative/dartnative.dart';
 
-import '../../data/sample_events.dart';
 import '../../models/calendar_event.dart';
 import '../../utils/calendar_date_utils.dart' as calendar_date_utils;
 import 'month_grid.dart';
@@ -10,11 +9,13 @@ import 'month_header.dart';
 /// previous/next month navigation, today highlighted, per-date event
 /// indicators, and a list of the selected date's events below the grid.
 ///
-/// Returns content only — no `Scaffold`/`AppBar` of its own. It is embedded
-/// inside `CalendarShowcaseScreen`'s `IndexedStack`, which owns the single
-/// shared shell (title bar + bottom tab bar).
+/// Returns content only — no `Scaffold`/`AppBar` of its own, so it can be
+/// embedded in any layout (a tab, a page, a showcase shell).
 class MonthCalendar extends StatefulWidget {
-  const MonthCalendar({super.key});
+  /// The events to display across the month grid and selected-date list.
+  final List<CalendarEvent> events;
+
+  const MonthCalendar({super.key, this.events = const []});
 
   @override
   State<MonthCalendar> createState() => _MonthCalendarState();
@@ -63,7 +64,7 @@ class _MonthCalendarState extends State<MonthCalendar> {
   @override
   Widget build(BuildContext context) {
     final selectedDateEvents = calendar_date_utils.sortEventsChronologically(
-      calendar_date_utils.eventsOnDay(sampleEvents, _selectedDate),
+      calendar_date_utils.eventsOnDay(widget.events, _selectedDate),
     );
 
     return SingleChildScrollView(
@@ -83,7 +84,7 @@ class _MonthCalendarState extends State<MonthCalendar> {
               displayedMonth: _displayedMonth,
               selectedDate: _selectedDate,
               today: _today,
-              events: sampleEvents,
+              events: widget.events,
               onSelectDate: _selectDate,
             ),
           ),
