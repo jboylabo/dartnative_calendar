@@ -1,5 +1,5 @@
-import 'package:dartnative_calendar/dartnative_calendar.dart';
-import 'package:dartnative_calendar/src/utils/calendar_date_utils.dart'
+import 'package:calendar_kit/calendar_kit.dart';
+import 'package:calendar_kit/src/utils/calendar_date_utils.dart'
     as calendar_date_utils;
 import 'package:test/test.dart';
 

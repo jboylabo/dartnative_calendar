@@ -1,4 +1,4 @@
-# dartnative_calendar
+# calendar_kit
 
 Reusable **month**, **week**, **day**, and **agenda (timeline)** calendar
 views for [DartNative](https://dartnative.com) apps — today highlighted,
@@ -10,13 +10,13 @@ it drops into a tab, a page, or any layout you already have.
 
 ## Install
 
-Add a dependency on `dartnative_calendar` in your app's `pubspec.yaml`. Once
+Add a dependency on `calendar_kit` in your app's `pubspec.yaml`. Once
 published to [dartpub.dev](https://dartpub.dev), a plain version dependency
 resolves it the same way the DartNative framework itself does:
 
 ```yaml
 dependencies:
-  dartnative_calendar: ^0.1.0
+  calendar_kit: ^0.1.0
 ```
 
 Then fetch it with:
@@ -28,7 +28,7 @@ dn pub get
 ## Usage
 
 ```dart
-import 'package:dartnative_calendar/dartnative_calendar.dart';
+import 'package:calendar_kit/calendar_kit.dart';
 
 final events = [
   CalendarEvent(

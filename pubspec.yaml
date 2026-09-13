@@ -1,4 +1,4 @@
-name: dartnative_calendar
+name: calendar_kit
 description: >-
   Reusable month, week, day, and agenda calendar views for DartNative apps,
   with per-date event indicators, time-grid layout, and overlap handling.

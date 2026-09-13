@@ -9,6 +9,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.0"
+  calendar_kit:
+    dependency: "direct main"
+    description:
+      path: ".."
+      relative: true
+    source: path
+    version: "0.1.0"
   dartnative:
     dependency: "direct overridden"
     description:
@@ -16,13 +23,6 @@ packages:
       relative: true
     source: path
     version: "1.0.0"
-  dartnative_calendar:
-    dependency: "direct main"
-    description:
-      path: ".."
-      relative: true
-    source: path
-    version: "0.1.0"
   ffi:
     dependency: "direct main"
     description:
